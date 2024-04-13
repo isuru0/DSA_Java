@@ -22,12 +22,10 @@ public class Array {
         System.out.println();
         System.out.println();
 
-
         //UPDATE VALUE OF ARRAY
         System.out.println("* Update Operation *");
         int update_index = 2;
         int update_value = 35;
-
         array_numbers[update_index] = update_value;
 
         System.out.print("Elements of Updated Array: ");
@@ -36,7 +34,6 @@ public class Array {
         }
         System.out.println();
         System.out.println();
-
 
         //INSERT VALUE OF ARRAY
         System.out.println("* Insert Operation *");
@@ -55,7 +52,6 @@ public class Array {
         System.out.println();
         System.out.println();
 
-
         //DELETE VALUE OF ARRAY
         System.out.println("* Delete Operation *");
         int delete_index = 2;
@@ -70,7 +66,6 @@ public class Array {
         }
         System.out.println();
         System.out.println();
-
 
         //SEARCH VALUE OF ARRAY
         System.out.println("* Search Operation *");
