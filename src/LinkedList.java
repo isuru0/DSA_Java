@@ -1,9 +1,12 @@
 public class LinkedList {
 
+    //CREATE NODE CLASS
     static class Node {
+        //ATTRIBUTES IN NODES
         int data;
         Node next;
 
+        //HEAD & TAIL NODES
         Node head = null;
         Node tail = null;
 
@@ -76,7 +79,10 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
+
+        //CREATE NODE CLASS OBJECT AS A LINKED LIST
         Node list = new Node();
+        //LINKED LIST OPERATIONS
         list.add(10);
         list.add(20);
         list.add(30);
