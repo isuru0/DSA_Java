@@ -41,9 +41,13 @@ public class Array {
         int insert_value = 25;
         size++;
         for(int i=size; i>=insert_index; i--) {
-            array_numbers[i] = array_numbers[i-1];
+            if(i == insert_index) {
+                array_numbers[insert_index] = insert_value;
+                break;
+            } else {
+                array_numbers[i] = array_numbers[i - 1];
+            }
         }
-        array_numbers[2] = insert_value;
 
         System.out.print("Elements of Inserted Array: ");
         for(int i=0; i<size; i++) {
