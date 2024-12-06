@@ -19,6 +19,7 @@ public class Array {
         for(int i=0; i<size; i++) {
             System.out.print(array_numbers[i] +" ");
         }
+        
         System.out.println();
         System.out.println();
 
