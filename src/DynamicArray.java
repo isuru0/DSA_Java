@@ -10,26 +10,26 @@ public class DynamicArray {
         this.array_last_index = array_size - 1;
     }
 
-    //INSERT VALUE
+    //INSERT METHOD
     void add(int value) {
+        //CHECK ARRAY IS EMPTY OR NOT
         if(array_numbers[array_last_index] != null) {
+            //CRETE TEMPORARY ARRAY AND COPY ELEMENTS FORM EXITING ARRAY
             Integer[] temp_array_numbers = new Integer[array_size];
             for (int i = 0; i < array_size; i++) {
                 temp_array_numbers[i] = array_numbers[i];
             }
-
+            //RESIZE AND REASSIGN THE VALUES
             array_size = array_size * 2;
             array_numbers = new Integer[array_size];
-
             for (int i = 0; i < temp_array_numbers.length; i++) {
                 array_numbers[i] = temp_array_numbers[i];
             }
-
             array_last_index = array_size -1;
         }
-
+        //INSERT THE VALUE
         for (int i = 0; i < array_size; i++) {
-            if(array_numbers[i] == null) {              //CHECK ARRAY IS EMPTY OR NOT
+            if(array_numbers[i] == null) {
                 array_numbers[i] = value;
                 return;
             }
