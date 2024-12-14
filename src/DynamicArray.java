@@ -1,6 +1,6 @@
 public class DynamicArray {
     //DECLARE VARIABLES AND ARRAY
-    int array_size, array_last_index;
+    int array_size, array_last_index, index_count;
     int max_size = 1000;
     Integer [] array_numbers;
 
@@ -9,6 +9,7 @@ public class DynamicArray {
         this.array_size = array_size;
         this.array_numbers = new Integer[array_size];
         this.array_last_index = array_size - 1;
+        this.index_count = 0;
     }
 
     ///INSERT METHOD
@@ -35,12 +36,18 @@ public class DynamicArray {
             array_last_index = array_size -1;
         }
         //INSERT THE VALUE
+        array_numbers[index_count] = value;
+        index_count++;
+
+        /*
+        //TRAVEL AND INSERT
         for (int i = 0; i < array_size; i++) {
             if(array_numbers[i] == null) {
                 array_numbers[i] = value;
                 return;
             }
         }
+         */
     }
 
     /// REMOVE METHOD
