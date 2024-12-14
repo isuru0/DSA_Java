@@ -1,16 +1,17 @@
 public class DynamicArray {
     //DECLARE VARIABLES AND ARRAY
     int array_size, array_last_index;
+    int max_size = 1000;
     Integer [] array_numbers;
 
-    //CONSTRUCTOR
+    ///CONSTRUCTOR
     DynamicArray(int array_size) {
         this.array_size = array_size;
         this.array_numbers = new Integer[array_size];
         this.array_last_index = array_size - 1;
     }
 
-    //INSERT METHOD
+    ///INSERT METHOD
     void add(int value) {
         //CHECK ARRAY IS EMPTY OR NOT
         if(array_numbers[array_last_index] != null) {
@@ -20,11 +21,17 @@ public class DynamicArray {
                 temp_array_numbers[i] = array_numbers[i];
             }
             //RESIZE AND REASSIGN THE VALUES
-            array_size = array_size * 2;
+            //RESIZE
+            if(array_size < max_size)
+                array_size = array_size * 2;
+            else
+                array_size = array_size + array_size/4;
+            //REASSIGN
             array_numbers = new Integer[array_size];
             for (int i = 0; i < temp_array_numbers.length; i++) {
                 array_numbers[i] = temp_array_numbers[i];
             }
+            temp_array_numbers = null;
             array_last_index = array_size -1;
         }
         //INSERT THE VALUE
@@ -35,6 +42,11 @@ public class DynamicArray {
             }
         }
     }
+
+    /// REMOVE METHOD
+    /// SEARCH METHOD
+    /// UPDATE METHOD
+    /// PRINT METHOD
 
     public static void main(String[] args) {
 
