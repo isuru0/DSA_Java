@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class DynamicArray {
     //DECLARE VARIABLES AND ARRAY
     int array_size, array_last_index, index_count;
@@ -51,12 +53,67 @@ public class DynamicArray {
     }
 
     /// REMOVE METHOD
+    void remove(){}
+
     /// SEARCH METHOD
+    //PRINT RESULT
+    //SEARCH FOR VALUE IN GIVEN INDEX
+    void searchIndexOf(int index) {
+        System.out.println("Value of index " + index + ": " + array_numbers[index]);
+    }
+    //SEARCH FOR INDEX IN GIVEN VALUE
+    void searchValueOf(Integer value) {
+        System.out.print("Index of value " +value+ ": ");
+        for(int i = 0; i < array_size; i++) {
+            if(Objects.equals(value, array_numbers[i]))
+                System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+    //GET RESULT
+    //SEARCH FOR VALUE IN GIVEN INDEX
+    public int getSearchIndexOf(int index) {
+        return array_numbers[index];
+    }
+    //SEARCH FOR INDEX IN GIVEN VALUE
+    Integer[] getSearchValueOf(Integer value) {
+        int search_count = 0;
+        Integer[] result = new Integer[array_size];
+        for(int i = 0; i < array_size; i++) {
+            if(Objects.equals(value, array_numbers[i])) {
+                search_count++;
+                result[search_count - 1] = i;
+            }
+        }
+        return result;
+    }
+
+
     /// UPDATE METHOD
+    void update(){}
+
     /// PRINT METHOD
+    void print() {
+        //PRE TEXT
+        System.out.print("Array: { ");
+        //ARRAY CONTENT
+        for(Integer number: array_numbers){
+            if(number == null) {
+                break;
+            }
+            System.out.print(number);
+            if (!number.equals(array_numbers[array_last_index])) {
+                System.out.print(" ");
+            }
+        }
+        //POST TEXT
+        System.out.print("}");
+        System.out.println();
+    }
 
     public static void main(String[] args) {
 
+        //CREATE & INSERT VALUES FOR ARRAY
         DynamicArray array_one = new DynamicArray(5);
         array_one.add(30);
         array_one.add(4);
@@ -71,9 +128,21 @@ public class DynamicArray {
         array_one.add(7);
         array_one.add(55);
 
-        for(Integer number: array_one.array_numbers)
-            System.out.print(number + " ");
+        //PRINT THE ARRAY
+        array_one.print();
 
+        //SEARCH ELEMENTS FROM THE ARRAY
+        System.out.println("Get Search Result");
+        System.out.println("-----------------");
+        array_one.searchValueOf(55); //SEARCH AND PRINT INDEX
+        Integer[] get_result = array_one.getSearchValueOf(55); //SEARCH AND GET INDEX
+        for (Integer number: get_result) {
+            if(number == null)
+                break;
+            System.out.println(number);
+        }
+        array_one.searchIndexOf(0);  //SEARCH AND PRINT VALUE
+        System.out.println(array_one.getSearchIndexOf(0));  //SEARCH AND GET VALUE
     }
 }
 
