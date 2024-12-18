@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class DynamicArray {
-    //DECLARE VARIABLES AND ARRAY
-    int array_size, array_last_index, index_count;
+    ///DECLARE VARIABLES AND ARRAY
+    int array_size, array_last_index;
     int max_size = 1000;
     Integer [] array_numbers;
 
@@ -11,45 +11,75 @@ public class DynamicArray {
         this.array_size = array_size;
         this.array_numbers = new Integer[array_size];
         this.array_last_index = array_size - 1;
-        this.index_count = 0;
     }
 
     ///INSERT METHOD
-    void add(int value) {
-        //CHECK ARRAY IS EMPTY OR NOT
-        if(array_numbers[array_last_index] != null) {
-            //CRETE TEMPORARY ARRAY AND COPY ELEMENTS FORM EXITING ARRAY
-            Integer[] temp_array_numbers = new Integer[array_size];
-            for (int i = 0; i < array_size; i++) {
-                temp_array_numbers[i] = array_numbers[i];
-            }
-            //RESIZE AND REASSIGN THE VALUES
-            //RESIZE
-            if(array_size < max_size)
-                array_size = array_size * 2;
-            else
-                array_size = array_size + array_size/4;
-            //REASSIGN
-            array_numbers = new Integer[array_size];
-            for (int i = 0; i < temp_array_numbers.length; i++) {
-                array_numbers[i] = temp_array_numbers[i];
-            }
-            temp_array_numbers = null;
-            array_last_index = array_size -1;
+    //EXTEND THE ARRAY
+    void extendArray() {
+        //CRETE TEMPORARY ARRAY AND COPY ELEMENTS FORM EXITING ARRAY
+        Integer[] temp_array_numbers = new Integer[array_size];
+        for (int i = 0; i < array_size; i++) {
+            temp_array_numbers[i] = array_numbers[i];
         }
-        //INSERT THE VALUE
-        array_numbers[index_count] = value;
-        index_count++;
-
-        /*
+        //RESIZE AND REASSIGN THE VALUES
+        //RESIZE
+        if(array_size < max_size)
+            array_size = array_size * 2;
+        else
+            array_size = array_size + array_size/4;
+        //REASSIGN
+        array_numbers = new Integer[array_size];
+        for (int i = 0; i < temp_array_numbers.length; i++) {
+            array_numbers[i] = temp_array_numbers[i];
+        }
+        temp_array_numbers = null;
+        array_last_index = array_size -1;
+    }
+    //INSERT IN ORDER
+    void add(Integer value) {
         //TRAVEL AND INSERT
         for (int i = 0; i < array_size; i++) {
             if(array_numbers[i] == null) {
                 array_numbers[i] = value;
                 return;
             }
+            else if(i == array_last_index) { //( && array_numbers[i] != null)
+                int array_last_index_next = array_size;
+                extendArray();
+                array_numbers[array_last_index_next] = value;
+                return;
+            }
         }
-         */
+    }
+    //INSERT USING INDEX
+    void add(int index, Integer value) {
+        //FIND EXTEND SIZE
+        int extend_size;
+        if(array_size < max_size)
+            extend_size = array_size * 2;
+        else
+            extend_size = array_size + array_size/4;
+        //CHECK THE INDEX IS IN THE CURRENT ARRAY SIZE
+        if(index < array_size) {
+            if(array_numbers[index] == null) {
+                array_numbers[index] = value;
+                return;
+            } else {
+                System.out.println("The index is already filled.");
+                return;
+            }
+        } else if(index < extend_size){
+            for (int i = 0; i < array_size; i++) {
+                if(array_numbers[i] == null) {
+                    System.out.println("Current array still not full, please fill it.");
+                    return;
+                } else if(i == array_last_index) {
+                    extendArray();
+                    array_numbers[index] = value;
+                    return;
+                }
+            }
+        }
     }
 
     /// REMOVE METHOD
@@ -88,7 +118,6 @@ public class DynamicArray {
         return result;
     }
 
-
     /// UPDATE METHOD
     void update(){}
 
@@ -97,12 +126,13 @@ public class DynamicArray {
         //PRE TEXT
         System.out.print("Array: { ");
         //ARRAY CONTENT
-        for(Integer number: array_numbers){
-            if(number == null) {
+        for(int i = 0; i < array_size; i++){
+            if(array_numbers[i] == null && i == array_last_index) {
                 break;
             }
-            System.out.print(number);
-            if (!number.equals(array_numbers[array_last_index])) {
+            System.out.print(array_numbers[i]);
+            assert array_numbers[i] != null;
+            if (!array_numbers[i].equals(array_numbers[array_last_index])) {
                 System.out.print(" ");
             }
         }
@@ -120,18 +150,16 @@ public class DynamicArray {
         array_one.add(5);
         array_one.add(6);
         array_one.add(7);
-        array_one.add(55);
-        array_one.add(30);
-        array_one.add(4);
-        array_one.add(5);
-        array_one.add(6);
-        array_one.add(7);
-        array_one.add(55);
+        //array_one.add(55);
+        //array_one.add(5,55);
+
+        array_one.add(6,500);
 
         //PRINT THE ARRAY
         array_one.print();
 
         //SEARCH ELEMENTS FROM THE ARRAY
+        System.out.println("-----------------");
         System.out.println("Get Search Result");
         System.out.println("-----------------");
         array_one.searchValueOf(55); //SEARCH AND PRINT INDEX
