@@ -83,7 +83,14 @@ public class DynamicArray {
     }
 
     /// REMOVE METHOD
-    void remove(){}
+    void remove(){
+        int current_size = currentSize();
+        if(current_size != 0) {
+            array_numbers[current_size - 1] = null;
+        } else {
+            System.out.println("Array is already empty");
+        }
+    }
 
     /// SEARCH METHOD
     //SEARCH FOR VALUE IN GIVEN INDEX -> PRINT RESULT
@@ -117,7 +124,13 @@ public class DynamicArray {
     }
 
     /// UPDATE METHOD
-    void update(){}
+    void update(int index, Integer value){
+        if(array_numbers[index] != null) {
+            array_numbers[index] = value;
+        } else {
+            System.out.println("The index not filled.");
+        }
+    }
 
     /// PRINT METHOD
     //FIND CURRENT ARRAY SIZE
@@ -127,6 +140,8 @@ public class DynamicArray {
             if(array_numbers[i] != null) {
                 array_current_size = i + 1;
                 break;
+            } else {
+                array_current_size = i;
             }
         }
         return array_current_size;
@@ -161,7 +176,7 @@ public class DynamicArray {
         array_one.add(5);
         array_one.add(6);
         array_one.add(7);
-        //array_one.add(55);
+        array_one.add(55);
         //array_one.add(5,55);
 
         array_one.add(6,500);
@@ -183,111 +198,18 @@ public class DynamicArray {
         }
         array_one.searchIndexOf(0);  //SEARCH AND PRINT VALUE
         System.out.println(array_one.getSearchIndexOf(0));  //SEARCH AND GET VALUE
+
+        //UPDATE ELEMENTS
+        System.out.println("-----------------");
+        System.out.println("Get Update Result");
+        System.out.println("-----------------");
+        array_one.update(5, 100);
+
+        //REMOVE ELEMENTS
+        System.out.println("-----------------");
+        System.out.println("Get Remove Result");
+        System.out.println("-----------------");
+        array_one.update(5, 100);
     }
 }
 
-
-
-//        //DECLARE AND INITIAL A INTEGER ARRAY
-//        int memory_size = 10;
-//        int [] array_numbers = new int[memory_size];
-//
-//        int size = 5;                                        //DECIDED SIZE OF ARRAY
-//        int array_length = array_numbers.length;             //LENGTH OF ARRAY
-//        int array_last_element_index = array_length - 1;     //INDEX OF LAST ELEMENT
-//
-//        //INITIAL VALUES INTO ARRAY
-//        array_numbers[0] = 10;
-//        array_numbers[1] = 20;
-//        array_numbers[2] = 30;
-//        array_numbers[3] = 40;
-//        array_numbers[4] = 50;
-//
-//        System.out.print("Elements of Array: ");
-//        for(int i=0; i<size; i++) {
-//            System.out.print(array_numbers[i] +" ");
-//        }
-//
-//        System.out.println();
-//        System.out.println();
-//
-//        //UPDATE VALUE OF ARRAY
-//        System.out.println("* Update Operation *");
-//        int update_index = 2;
-//        int update_value = 35;
-//        array_numbers[update_index] = update_value;
-//
-//        System.out.print("Elements of Updated Array: ");
-//        for(int i=0; i<size; i++) {
-//            System.out.print(array_numbers[i] +" ");
-//        }
-//        System.out.println();
-//        System.out.println();
-//
-//        //INSERT VALUE OF ARRAY
-//        System.out.println("* Insert Operation *");
-//        int insert_index = 2;
-//        int insert_value = 25;
-//        size++;
-//        for(int i=size; i>=insert_index; i--) {
-//            if(i == insert_index) {
-//                array_numbers[insert_index] = insert_value;
-//                break;
-//            } else {
-//                array_numbers[i] = array_numbers[i - 1];
-//            }
-//        }
-//
-//        System.out.print("Elements of Inserted Array: ");
-//        for(int i=0; i<size; i++) {
-//            System.out.print(array_numbers[i] +" ");
-//        }
-//        System.out.println();
-//        System.out.println();
-//
-//        //DELETE VALUE OF ARRAY
-//        System.out.println("* Delete Operation *");
-//        int delete_index = 2;
-//        for(int i=delete_index; i<=size; i++) {
-//            array_numbers[i] = array_numbers[i+1];
-//        }
-//        size--;
-//
-//        System.out.print("Elements of Inserted Array: ");
-//        for(int i=0; i<size; i++) {
-//            System.out.print(array_numbers[i] +" ");
-//        }
-//        System.out.println();
-//        System.out.println();
-//
-//        //SEARCH VALUE OF ARRAY
-//        System.out.println("* Search Operation *");
-//        int search_value = 35;
-//        boolean found = false;
-//        int search_index;
-//        for(int i=0; i<size; i++) {
-//            if(array_numbers[i] == search_value) {
-//                found = true;
-//                search_index = i;
-//                break;
-//            }
-//        }
-//        if(found)
-//            System.out.println("Found the value");
-//        else
-//            System.out.println("The value is not here!");
-//        System.out.println();
-//
-//        //PRINT THE ARRAY WAY 01
-//        System.out.println("* Elements of Array *");
-//        for(int i=0; i<array_length; i++) {
-//            System.out.println("Index " +i +": " +array_numbers[i]);
-//        }
-//
-//        /*
-//        //PRINT THE ARRAY WAY 02
-//        for(int number: array_numbers) {
-//            System.out.println(array_numbers[number]);
-//        }
-//        */
-//
