@@ -4,6 +4,7 @@ public class DynamicArray {
     ///DECLARE VARIABLES AND ARRAY
     int array_size, array_last_index;
     int max_size = 1000;
+    int min_size = 5;
     Integer [] array_numbers;
 
     ///CONSTRUCTOR
@@ -21,7 +22,6 @@ public class DynamicArray {
         for (int i = 0; i < array_size; i++) {
             temp_array_numbers[i] = array_numbers[i];
         }
-        //RESIZE AND REASSIGN THE VALUES
         //RESIZE
         if(array_size < max_size)
             array_size = array_size * 2;
@@ -84,8 +84,21 @@ public class DynamicArray {
 
     /// REMOVE METHOD
     void shrink() {
-        if(currentSize() < array_size/2) {
-            
+        if(currentSize() == array_size/2) {
+            //CRETE TEMPORARY ARRAY AND COPY ELEMENTS FORM EXITING ARRAY
+            Integer[] temp_array_numbers = new Integer[array_size];
+            for(int i = 0; i < array_size; i++) {
+                temp_array_numbers[i] = array_numbers[i];
+            }
+            //RESIZE
+            array_size = array_size/2 ;
+            //REASSIGN
+            array_numbers = new Integer[array_size];
+            for(int i = 0; i < array_numbers.length; i++) {
+                array_numbers[i] = temp_array_numbers[i];
+            }
+            temp_array_numbers = null;
+            array_last_index = array_size -1;
         }
     }
     //REMOVE IN ORDER
@@ -96,6 +109,8 @@ public class DynamicArray {
         } else {
             System.out.println("Array is already empty");
         }
+        if(array_size > min_size)
+            shrink();
     }
     //REMOVE USING INDEX
     void remove(int index) {
@@ -106,6 +121,8 @@ public class DynamicArray {
                 System.out.println("The index is already empty.");
         } else
             System.out.println("The index is not in the array range.");
+        if(array_size > min_size)
+            shrink();
     }
 
     /// SEARCH METHOD
@@ -141,10 +158,14 @@ public class DynamicArray {
 
     /// UPDATE METHOD
     void update(int index, Integer value){
-        if(array_numbers[index] != null) {
-            array_numbers[index] = value;
+        if(index < currentSize()) {
+            if (array_numbers[index] != null) {
+                array_numbers[index] = value;
+            } else {
+                System.out.println("The index not filled.");
+            }
         } else {
-            System.out.println("The index not filled.");
+            System.out.println("The index not excite.");
         }
     }
 
@@ -191,8 +212,8 @@ public class DynamicArray {
         array_one.add(4);
         array_one.add(5);
         array_one.add(6);
-        array_one.add(7);
-        //array_one.add(55);
+//        array_one.add(7);
+//        array_one.add(55);
         //array_one.add(5,55);
 
         array_one.add(6,500);
@@ -227,7 +248,7 @@ public class DynamicArray {
         System.out.println("Get Remove Result");
         System.out.println("-----------------");
         array_one.print();
-
+        array_one.remove();
         array_one.print();
     }
 }
