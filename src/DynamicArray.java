@@ -83,6 +83,12 @@ public class DynamicArray {
     }
 
     /// REMOVE METHOD
+    void shrink() {
+        if(currentSize() < array_size/2) {
+            
+        }
+    }
+    //REMOVE IN ORDER
     void remove(){
         int current_size = currentSize();
         if(current_size != 0) {
@@ -90,6 +96,16 @@ public class DynamicArray {
         } else {
             System.out.println("Array is already empty");
         }
+    }
+    //REMOVE USING INDEX
+    void remove(int index) {
+        if(index < array_size) {
+            if(array_numbers[index] != null) {
+                array_numbers[index] = null;
+            } else
+                System.out.println("The index is already empty.");
+        } else
+            System.out.println("The index is not in the array range.");
     }
 
     /// SEARCH METHOD
@@ -176,7 +192,7 @@ public class DynamicArray {
         array_one.add(5);
         array_one.add(6);
         array_one.add(7);
-        array_one.add(55);
+        //array_one.add(55);
         //array_one.add(5,55);
 
         array_one.add(6,500);
@@ -204,12 +220,15 @@ public class DynamicArray {
         System.out.println("Get Update Result");
         System.out.println("-----------------");
         array_one.update(5, 100);
+        array_one.print();
 
         //REMOVE ELEMENTS
         System.out.println("-----------------");
         System.out.println("Get Remove Result");
         System.out.println("-----------------");
-        array_one.update(5, 100);
+        array_one.print();
+
+        array_one.print();
     }
 }
 
