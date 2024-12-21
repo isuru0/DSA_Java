@@ -208,48 +208,63 @@ public class DynamicArray {
 
         //CREATE & INSERT VALUES FOR ARRAY
         DynamicArray array_one = new DynamicArray(5);
-        array_one.add(30);
-        array_one.add(4);
-        array_one.add(5);
-        array_one.add(6);
-//        array_one.add(7);
-//        array_one.add(55);
-        //array_one.add(5,55);
-
-        array_one.add(6,500);
-
-        //PRINT THE ARRAY
+        //INSERT VALUES
+        System.out.println("----------------------------------");
+        System.out.println("* Insert values with 3 methods *");
+        System.out.println("01: Order insert");
+        array_one.add(100);
+        System.out.println("02: With index insert");
+        array_one.add(1,4);
+        System.out.println("03: Using loop");
+        for(int i = 0; i < 3; i++) {
+            array_one.add(i + 10);
+        }
+        array_one.add(6,4);
         array_one.print();
+        System.out.println("----------------------------------");
+        //PRINT THE ARRAY
+        System.out.println("----------------------------------");
+        System.out.println("* Print values with 2 methods *");
+        System.out.println("01: Print all until inserted last element");
+        array_one.print();
+        System.out.println("02: Print only values");
         array_one.printOnlyValues();
-
+        System.out.println("----------------------------------");
         //SEARCH ELEMENTS FROM THE ARRAY
-        System.out.println("-----------------");
-        System.out.println("Get Search Result");
-        System.out.println("-----------------");
-        array_one.searchValueOf(55); //SEARCH AND PRINT INDEX
+        System.out.println("----------------------------------");
+        System.out.println("* Search values and index with 2 methods *");
+        System.out.println("01: Search using values");
+        array_one.searchValueOf(11); //SEARCH AND PRINT INDEX
         Integer[] get_result = array_one.getSearchValueOf(55); //SEARCH AND GET INDEX
         for (Integer number: get_result) {
-            if(number == null)
+            if(number == null) {
                 break;
+            }
             System.out.println(number);
         }
+        System.out.println("02: Search using index ");
         array_one.searchIndexOf(0);  //SEARCH AND PRINT VALUE
-        System.out.println(array_one.getSearchIndexOf(0));  //SEARCH AND GET VALUE
+        int search_value = array_one.getSearchIndexOf(0);  //SEARCH AND GET VALUE
+        array_one.print();
+        System.out.println("----------------------------------");
 
         //UPDATE ELEMENTS
-        System.out.println("-----------------");
-        System.out.println("Get Update Result");
-        System.out.println("-----------------");
-        array_one.update(5, 100);
+        System.out.println("----------------------------------");
+        System.out.println("* Update a value *");
+        array_one.update(6, 1000);
         array_one.print();
+        System.out.println("----------------------------------");
 
         //REMOVE ELEMENTS
-        System.out.println("-----------------");
-        System.out.println("Get Remove Result");
-        System.out.println("-----------------");
-        array_one.print();
+        System.out.println("----------------------------------");
+        System.out.println("* Remove a value with 2 methods *");
+        System.out.println("01: Order remove");
         array_one.remove();
         array_one.print();
+        System.out.println("02: With index remove");
+        array_one.remove(2);
+        array_one.print();
+        System.out.println("----------------------------------");
     }
 }
 
