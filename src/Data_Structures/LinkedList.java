@@ -1,3 +1,5 @@
+package Data_Structures;
+
 public class LinkedList {
 
     //CREATE NODE CLASS

@@ -1,14 +1,17 @@
+package Data_Structures;
+
 import java.util.Objects;
 
 public class DynamicArray {
     ///DECLARE VARIABLES AND ARRAY
-    int array_size, array_last_index;
+    public int array_size;
+    int array_last_index;
     int max_size = 1000;
     int min_size = 5;
     Integer [] array_numbers;
 
     ///CONSTRUCTOR
-    DynamicArray(int array_size) {
+    public DynamicArray(int array_size) {
         this.array_size = array_size;
         this.array_numbers = new Integer[array_size];
         this.array_last_index = array_size - 1;
@@ -16,7 +19,7 @@ public class DynamicArray {
 
     ///INSERT METHOD
     //EXTEND THE ARRAY
-    void extendArray() {
+    private void extendArray() {
         //CRETE TEMPORARY ARRAY AND COPY ELEMENTS FORM EXITING ARRAY
         Integer[] temp_array_numbers = new Integer[array_size];
         for (int i = 0; i < array_size; i++) {
@@ -36,7 +39,7 @@ public class DynamicArray {
         array_last_index = array_size -1;
     }
     //INSERT IN ORDER
-    void add(Integer value) {
+    public void add(Integer value) {
         //TRAVEL AND INSERT
         for (int i = 0; i < array_size; i++) {
             if(array_numbers[i] == null) {
@@ -52,7 +55,7 @@ public class DynamicArray {
         }
     }
     //INSERT USING INDEX
-    void add(int index, Integer value) {
+    public void add(int index, Integer value) {
         //FIND EXTEND SIZE
         int extend_size;
         if(array_size < max_size)
@@ -83,7 +86,7 @@ public class DynamicArray {
     }
 
     /// REMOVE METHOD
-    void shrink() {
+    private void shrink() {
         if(currentSize() == array_size/2) {
             //CRETE TEMPORARY ARRAY AND COPY ELEMENTS FORM EXITING ARRAY
             Integer[] temp_array_numbers = new Integer[array_size];
@@ -102,7 +105,7 @@ public class DynamicArray {
         }
     }
     //REMOVE IN ORDER
-    void remove(){
+    public void remove(){
         int current_size = currentSize();
         if(current_size != 0) {
             array_numbers[current_size - 1] = null;
@@ -113,7 +116,7 @@ public class DynamicArray {
             shrink();
     }
     //REMOVE USING INDEX
-    void remove(int index) {
+    public void remove(int index) {
         if(index < array_size) {
             if(array_numbers[index] != null) {
                 array_numbers[index] = null;
@@ -127,7 +130,7 @@ public class DynamicArray {
 
     /// SEARCH METHOD
     //SEARCH FOR VALUE IN GIVEN INDEX -> PRINT RESULT
-    void searchIndexOf(int index) {
+    public void searchIndexOf(int index) {
         System.out.println("Value of index " + index + ": " + array_numbers[index]);
     }
     //SEARCH FOR VALUE IN GIVEN INDEX -> GET RESULT
@@ -135,7 +138,7 @@ public class DynamicArray {
         return array_numbers[index];
     }
     //SEARCH FOR INDEX IN GIVEN VALUE -> PRINT RESULT
-    void searchValueOf(Integer value) {
+    public void searchValueOf(Integer value) {
         System.out.print("Index of value " +value+ ": ");
         for(int i = 0; i < array_size; i++) {
             if(Objects.equals(value, array_numbers[i]))
@@ -144,7 +147,7 @@ public class DynamicArray {
         System.out.println();
     }
     //SEARCH FOR INDEX IN GIVEN VALUE -> GET RESULT
-    Integer[] getSearchValueOf(Integer value) {
+    public Integer[] getSearchValueOf(Integer value) {
         int search_count = 0;
         Integer[] result = new Integer[array_size];
         for(int i = 0; i < array_size; i++) {
@@ -157,7 +160,7 @@ public class DynamicArray {
     }
 
     /// UPDATE METHOD
-    void update(int index, Integer value){
+    public void update(int index, Integer value){
         if(index < currentSize()) {
             if (array_numbers[index] != null) {
                 array_numbers[index] = value;
@@ -184,7 +187,7 @@ public class DynamicArray {
         return array_current_size;
     }
     //PRINT CURRENT ARRAY
-    void print() {
+    public void print() {
         System.out.print("Array: { ");  //PRI TEXT
         for(int i = 0; i < currentSize(); i++) {
             System.out.print(array_numbers[i] + " ");
@@ -193,7 +196,7 @@ public class DynamicArray {
         System.out.println();
     }
     //PRINT ONLY VALUES
-    void printOnlyValues() {
+    public void printOnlyValues() {
         System.out.print("Array: { ");  //PRE TEXT
         //ARRAY CONTENT
         for(int i = 0; i < currentSize(); i++){
@@ -208,6 +211,18 @@ public class DynamicArray {
 
         //CREATE & INSERT VALUES FOR ARRAY
         DynamicArray array_one = new DynamicArray(5);
+
+        //READ ME
+        System.out.println("==============================================================");
+        System.out.println("Array Options:");
+        System.out.println("(01) Insert: add(value), add(index, value)");
+        System.out.println("(02) Delete: remove(), remove(index)");
+        System.out.println("(03) Update: update(index, value)");
+        System.out.println("(04) Search: searchValueOf(value), searchIndexOf(index)");
+        System.out.println("           : getSearchValueOf(value), getSearchIndexOf(index)");
+        System.out.println("(05) Print : print(), printOnlyValues(), currentSize()");
+        System.out.println("==============================================================");
+
         //INSERT VALUES
         System.out.println("----------------------------------");
         System.out.println("* Insert values with 3 methods *");
@@ -265,6 +280,19 @@ public class DynamicArray {
         array_one.remove(2);
         array_one.print();
         System.out.println("----------------------------------");
+
+        int temp = array_one.array_size;
+        System.out.println(temp);
+        array_one.remove();
+        array_one.remove();
+        //array_one.shrink();
+        temp = array_one.array_size;
+        System.out.println(temp);
+
+        //array_one.extendArray();
+        temp = array_one.array_size;
+        System.out.println(temp);
+
     }
 }
 

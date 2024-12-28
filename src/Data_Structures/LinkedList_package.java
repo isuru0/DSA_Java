@@ -1,4 +1,4 @@
-//IMPORT LINKED LIST PACKAGE
+package Data_Structures;//IMPORT LINKED LIST PACKAGE
 import java.util.LinkedList;
 
 public class LinkedList_package {
